@@ -1,6 +1,6 @@
-import { defineConfig } from 'cypress'
+const { defineConfig } = require('cypress')
 
-export default defineConfig({
+module.exports = defineConfig({
   chromeWebSecurity: false,
   projectId: 'ioceso',
   screenshotOnRunFailure: true,
@@ -8,8 +8,12 @@ export default defineConfig({
   reporterOptions: {
     reportDir: 'cypress/report',
     charts: true,
-    reportPageTitle: 'Joan Media Demo Report',
+    reportPageTitle: 'QPalette Report',
     embeddedScreenshots: true,
+    e2e: {
+      experimentalStudio: true,
+      failOnStatusCode: false
+    }
   },
   env: {
     db: {

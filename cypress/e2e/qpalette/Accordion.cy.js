@@ -1,0 +1,22 @@
+it('Accordion', function() {
+  cy.visit('https://qpalette-dev.diasoft.ru/interface/qpalettedocui/documentation-2/development/prime-components/accordion');
+  cy.get('#p-accordiontab-1 > .p-accordion-header-text').click();
+  cy.get('#p-accordiontab-2').click();
+  cy.get('#p-accordiontab-3 > .p-accordion-header-text').click();
+  cy.get('#p-accordiontab-4 > .p-accordion-header-text').click();
+  cy.get('#p-accordiontab-5 > .p-accordion-header-text').click();
+  cy.get('#p-accordiontab-3 > .p-accordion-header-text').click();
+  cy.get('#p-accordiontab-4 > .p-accordion-header-text').click();
+  cy.get('#p-accordiontab-5 > .p-accordion-header-text').click();
+  cy.get('[label="Toggle 2st"] > .p-ripple').click();
+  cy.get('[label="Toggle 3st"] > .p-ripple').click();
+  cy.get('[styleclass="p-button-text"] > .p-ripple > .p-button-label').click();
+  cy.get('[label="Toggle 2st"] > .p-ripple').click();
+  cy.get('[label="Toggle 3st"] > .p-ripple > .p-button-label').click();
+  cy.get('#p-accordiontab-6').click();
+  cy.get('#p-accordiontab-7').click();
+  cy.get('#p-accordiontab-8 > .p-accordion-header-text').click();
+  cy.get('#p-accordiontab-9').click();
+  cy.get('#p-accordiontab-10 > .p-accordion-header-text').click();
+  cy.get('#p-accordiontab-11 > .p-accordion-header-text').click();
+});

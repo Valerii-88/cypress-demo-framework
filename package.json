@@ -6,7 +6,7 @@
   "scripts": {
     "test": "test",
     "cypress:open": "cypress open --browser chrome --e2e",
-    "cypress:runDefault": "cypress run --spec cypress/integration/pom/*.spec.js",
+    "cypress:runDefault": "cypress run --spec cypress/e2e/qpalette/*.cy.js",
     "cypress:chrome": "cypress run --browser chrome --spec cypress/integration/pom/*.spec.js",
     "cypress:edge": "cypress run --browser edge --spec cypress/integration/pom/*.spec.js",
     "cypress:runChromeHeadless": "cypress run --headless --browser chrome --spec cypress/integration/pom/*.spec.js --record --key 4bc50df7-5eee-4147-8eb3-ccea611c8d4b"
