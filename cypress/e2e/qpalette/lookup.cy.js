@@ -1,8 +1,29 @@
 describe('check lookup spec', () => {
 
   it('лукап', function() {
-     
-    cy.visit('https://qpalette-dev.diasoft.ru');
+
+    cy.visit('http://qpalettedoc-dev.qpalette.qrunsys.diasoft.ru')
+    cy.get('#username').type('dsa', {timeout: 2000}).should('have.value', 'dsa')
+    cy.get('#password').type('12345678', {timeout: 2000}).should('have.value', '12345678')
+    cy.get('body > app-root > app-login-form > section > div > form > div.q-login__actions > button').click()
+    cy.wait(1000)
+
+    cy.log('Проверка получения токена')
+    cy.request('POST', 'http://qpalettedoc-dev.qpalette.qrunsys.diasoft.ru/api/mdpauth/mdpauth/oauth/token', {
+      username: 'dsa',
+      password: '12345678'
+    })
+        .should((response) => {
+          expect(response.status).to.eq(200)
+          expect(response).to.have.property('body').to.contain({
+            token_type: 'bearer',
+            expires_in: 999
+          })
+          expect(response.body).property('access_token').to.be.a('string')
+          expect(response.body).property('refresh_token').to.be.a('string')
+          expect(response).to.have.property('duration')
+        })
+
     cy.get('.q-tabs__burger-icon > .pi').click();
     cy.get('.q-form-field__input-wrapper > #search').type('лукап');
     cy.get('[style="--q-sidebar-level:2;"] > :nth-child(2) > :nth-child(1) > :nth-child(1) > .q-sidebar-inner__group').click();
