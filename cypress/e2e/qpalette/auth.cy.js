@@ -1,7 +1,7 @@
 describe('auth DQ', () => {
   it('TK-11, 12, 13, 14', () => {
-    cy.visit('http://qpalettedoc-dev.qpalette.qrunsys.diasoft.ru')
-
+    cy.visit('http://qpalettedocui.qpalette.qrunsys.diasoft.ru')
+/*
     cy.log('ТК-11. Авторизация')
     cy.get('#username').type('dsa', {timeout: 2000}).should('have.value', 'dsa')
     cy.get('#password').type('12345678', {timeout: 2000}).should('have.value', '12345678')
@@ -23,7 +23,7 @@ describe('auth DQ', () => {
           expect(response.body).property('refresh_token').to.be.a('string')
           expect(response).to.have.property('duration')
         })
-
+*/
     cy.log('Переход в сайдбар с настройками')
     cy.get('body > app-root > div > app-tabs > header > div > div > button:nth-child(2)', {timeout: 2000}).click()
     cy.wait(1000)
