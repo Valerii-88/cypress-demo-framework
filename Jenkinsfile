@@ -25,7 +25,7 @@ pipeline {
     //The values for these user-specified parameters are made available to Pipeline steps via the params object, see
     //the Parameters, Declarative Pipeline for its specific usage.
     parameters {
-        string(name: 'SPEC', defaultValue: 'cypress/e2e/**/**', description: 'Ej: cypress/e2e/qpalette/*.cy.js')
+        string(name: 'SPEC', defaultValue: 'cypress/e2e/qpalette/**', description: 'Example: cypress/e2e/qpalette/*.cy.js')
         choice(name: 'BROWSER', choices: ['chrome', 'edge', 'firefox'], description: 'Pick the web browser you want to use to run your scripts')
     }
     

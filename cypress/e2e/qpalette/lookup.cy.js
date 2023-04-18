@@ -27,7 +27,7 @@ describe('check lookup spec', () => {
     cy.get('.p-flex-column > .p-mt-2 > :nth-child(2)').click();
     cy.get('.p-autocomplete > .ng-tns-c39-39').should('have.value', 'Василий Васильев');
 
-    // предустановить фильтры
+    // предустановка фильтров
     cy.get(':nth-child(8) > :nth-child(3) > .p-grid > .p-sm-12 > q-lookup > .container > .q-lookup__float-label > .q-lookup__actions > .p-element').click();
     cy.get('#pr_id_35-table > .p-datatable-tbody > :nth-child(1) > :nth-child(2)').should('have.text', 'Иван Иванов');
     cy.get('#pr_id_35-table > .p-datatable-tbody > :nth-child(2) > :nth-child(2)').should('have.text', 'Василий Васильев');

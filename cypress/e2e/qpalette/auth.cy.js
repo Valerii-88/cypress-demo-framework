@@ -1,6 +1,6 @@
 describe('auth DQ', () => {
   it('TK-11, 12, 13, 14', () => {
-    cy.visit('https://qpalettedoc-dev.qpalette.qrunsys.diasoft.ru')
+    cy.visit('http://qpalettedoc-dev.qpalette.qrunsys.diasoft.ru')
 
     cy.log('ТК-11. Авторизация')
     cy.get('#username').type('dsa', {timeout: 2000}).should('have.value', 'dsa')
@@ -9,7 +9,7 @@ describe('auth DQ', () => {
     cy.wait(1000)
 
     cy.log('Проверка получения токена')
-    cy.request('POST', 'https://qpalettedoc-dev.qpalette.qrunsys.diasoft.ru/api/mdpauth/mdpauth/oauth/token', {
+    cy.request('POST', 'http://qpalettedoc-dev.qpalette.qrunsys.diasoft.ru/api/mdpauth/mdpauth/oauth/token', {
       username: 'dsa',
       password: '12345678'
     })
