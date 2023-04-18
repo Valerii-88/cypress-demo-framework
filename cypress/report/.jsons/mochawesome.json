@@ -1,0 +1,112 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 1,
+    "pending": 0,
+    "failures": 0,
+    "start": "2023-04-18T06:09:07.249Z",
+    "end": "2023-04-18T06:10:03.910Z",
+    "duration": 56661,
+    "testsRegistered": 1,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "e308b017-12aa-48e3-a749-32082a150797",
+      "title": "",
+      "fullFile": "cypress\\e2e\\qpalette\\auth.cy.js",
+      "file": "cypress\\e2e\\qpalette\\auth.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "bc57751a-7847-4049-a47c-034aed69b4db",
+          "title": "auth DQ",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "TK-11, 12, 13, 14",
+              "fullTitle": "auth DQ TK-11, 12, 13, 14",
+              "timedOut": null,
+              "duration": 42673,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.visit('http://qpalettedoc-dev.qpalette.qrunsys.diasoft.ru');\ncy.log('ТК-11. Авторизация');\ncy.get('#username').type('dsa', {\n  timeout: 2000\n}).should('have.value', 'dsa');\ncy.get('#password').type('12345678', {\n  timeout: 2000\n}).should('have.value', '12345678');\ncy.get('body > app-root > app-login-form > section > div > form > div.q-login__actions > button').click();\ncy.wait(1000);\ncy.log('Проверка получения токена');\ncy.request('POST', 'http://qpalettedoc-dev.qpalette.qrunsys.diasoft.ru/api/mdpauth/mdpauth/oauth/token', {\n  username: 'dsa',\n  password: '12345678'\n}).should(response => {\n  expect(response.status).to.eq(200);\n  expect(response).to.have.property('body').to.contain({\n    token_type: 'bearer',\n    expires_in: 999\n  });\n  expect(response.body).property('access_token').to.be.a('string');\n  expect(response.body).property('refresh_token').to.be.a('string');\n  expect(response).to.have.property('duration');\n});\ncy.log('Переход в сайдбар с настройками');\ncy.get('body > app-root > div > app-tabs > header > div > div > button:nth-child(2)', {\n  timeout: 2000\n}).click();\ncy.wait(1000);\ncy.get('label[for=\"en\"]').click();\ncy.get('.q-side-dialog__header').should('have.text', 'Settings');\ncy.get('label[for=\"ru\"]').click();\ncy.get('.q-side-dialog__header').should('have.text', 'Настройки');\ncy.get('#pr_id_2_label').should('have.text', 'Светлая').click();\ncy.get('li[aria-label=\"Тёмная\"]').click();\ncy.get('#pr_id_2_label').should('have.text', 'Тёмная');\ncy.get('#p-tabpanel-1-label', {\n  timeout: 2000\n}).click();\ncy.get('#p-tabpanel-1 > div:nth-child(2) > button', {\n  timeout: 2000\n}).click();\ncy.log('ТК-12 Проверка кейса при которой новый пароль совпадает со старым');\ncy.get('#oldpassword').type('12345678', {\n  timeout: 2000\n}).should('have.value', '12345678');\ncy.get('#newPassword').type('12345678', {\n  timeout: 2000\n}).should('have.value', '12345678');\ncy.get('#confirmationPassword').type('12345678', {\n  timeout: 2000\n}).should('have.value', '12345678');\ncy.get('#p-tabpanel-1 > div:nth-child(2) > app-change-password-form > form > button').click();\ncy.get('#newPassword-help', {\n  timeout: 3000\n}).should('be.visible').should('have.text', 'Пароль слишком простой (содержит мало групп символов)');\ncy.log('ТК - 13 Проверка кейса при котором новый пароль содержит недопустимые символы');\ncy.get('#oldpassword').clear().should('have.value', '');\ncy.get('#newPassword').clear().should('have.value', '');\ncy.get('#confirmationPassword').clear().should('have.value', '');\ncy.get('#oldpassword').type('12345678', {\n  timeout: 2000\n}).should('have.value', '12345678');\ncy.get('#newPassword').type('12345678!', {\n  timeout: 2000\n}).should('have.value', '12345678!');\ncy.get('#confirmationPassword').type('12345678!', {\n  timeout: 2000\n}).should('have.value', '12345678!');\ncy.get('#p-tabpanel-1 > div:nth-child(2) > app-change-password-form > form > button').click();\ncy.get('#newPassword-help', {\n  timeout: 3000\n}).should('be.visible').should('have.text', 'Пароль содержит недопустимый символ: \\'!\\'');\ncy.log('ТК - 14 Проверка кейса при котором пароли не совпадают');\ncy.get('#oldpassword').clear().should('have.value', '');\ncy.get('#newPassword').clear().should('have.value', '');\ncy.get('#confirmationPassword').clear().should('have.value', '');\ncy.get('#oldpassword').type('12345678', {\n  timeout: 2000\n}).should('have.value', '12345678');\ncy.get('#newPassword').type('12345678qWe', {\n  timeout: 2000\n}).should('have.value', '12345678qWe');\ncy.get('#confirmationPassword').type('12345678qWeRTY', {\n  timeout: 2000\n}).should('have.value', '12345678qWeRTY');\ncy.get('#p-tabpanel-1 > div:nth-child(2) > app-change-password-form > form > button').click();\ncy.get('#confirmationPassword-help', {\n  timeout: 3000\n}).should('be.visible').should('have.text', 'Пароли не совпадают');\ncy.log('Выход из сессии');\ncy.get('body > app-root > div > app-tabs > header > button.q-tabs__burger.ng-star-inserted').click();\ncy.wait(1000);\ncy.get('body > app-root > div > app-sidebar > div > div > div.q-sidebar__footer > button:nth-child(2)', {\n  timeout: 3000\n}).click();\ncy.get('body > app-root > div > app-sidebar > div > div > div.q-sidebar__footer > q-menu > menu > li > button', {\n  timeout: 3000\n}).should('be.visible').click();",
+              "err": {},
+              "uuid": "1644d4b9-8349-4626-9940-0cc41027094f",
+              "parentUUID": "bc57751a-7847-4049-a47c-034aed69b4db",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "1644d4b9-8349-4626-9940-0cc41027094f"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 42673,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress\\report\\.jsons",
+        "charts": true,
+        "reportPageTitle": "QPalette Report",
+        "embeddedScreenshots": true,
+        "e2e": {
+          "experimentalStudio": true,
+          "failOnStatusCode": false
+        },
+        "overwrite": false,
+        "html": false,
+        "json": true
+      },
+      "version": "6.2.0"
+    }
+  }
+}
